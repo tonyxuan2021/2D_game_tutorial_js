@@ -21,7 +21,7 @@ window.addEventListener("load", function () {
       this.speedY = 0;
     }
     update() {
-      this.y += this.speedY;
+      this.y += this.speedY = 0;
     }
     draw(context) {
       context.fillRect(this.x, this.y, this.width, this.height);
@@ -51,6 +51,14 @@ window.addEventListener("load", function () {
   }
 
   const game = new Game(canvas.width, canvas.height);
+  // animation loop
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    game.update();
+    game.draw(ctx);
+    requestAnimationFrame(animate);
+  }
+  animate();
 });
 
 // encapsulation: access to the data can be restricted from outside the bundle
